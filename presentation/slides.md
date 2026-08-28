@@ -12,9 +12,14 @@ style: |
   }
 ---
 
-# SQLite als lokales Datenbanksystem  
+![width:250px](../assets/graphics/330px-SQLite370.svg.png)
+# als lokales Datenbanksystem  
 
 **Klaus Prinz** | Datenbanken - BIM25 - WIT
+
+<br>
+
+
 
 ---
 
@@ -156,6 +161,18 @@ df_result = pd.read_sql("SELECT * FROM books WHERE year > 2020", conn)
   1. Tabellen-Setup & Import von Beispieldaten
   2. SQL-Abfragen & Joins (Patrons, Books, Loans)
   3. Kurzer Einblick: ORM mit SQLAlchemy
+
+---
+## Quellen & Weiterführende Links
+### Offizielle Dokumentationen
+
+* **SQLite:** ([sqlite.org](https://sqlite.org)).
+* **Python `sqlite3`-Modul:** ([docs.python.org](https://docs.python.org/3/library/sqlite3.html)).
+* **Pandas:** ([pandas.pydata.org](https://pandas.pydata.org/)).
+* **SQLAlchemy:** ([sqlalchemy.org](https://www.sqlalchemy.org/)).
+
+### Datenanalyse-Kurs
+* **freeCodeCamp:** ([freecodecamp.org/learn/data-analysis-with-python](https://www.freecodecamp.org/learn/data-analysis-with-python/)).
 
 ---
 
