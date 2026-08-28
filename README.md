@@ -4,8 +4,8 @@ author: "Klaus Prinz"
 domain: "learning"
 status: "active"
 createdDate: "2026-08-28"
-tags: [sqlite, database, jupyter notebook, demo, presentation, markdown]
-requester: ""
+tags: [sqlite, database, jupyter notebook, demo, presentation, markdown, marp]
+requester: "bibinfo"
 ticketId: ""
 ---
 
