@@ -28,7 +28,7 @@ style: |
 > Ein kompakter Überblick von architektonischen Grundlagen zur praktischen Anwendung in Python.
 
 * **Grundlagen & Konzepte:** Was ist SQLite, welche Ideen drückt es aus, wofür ist es (nicht) geeignet, wie unterscheidet es sich von Flat Files und Client-Server-DBs?
-* **SQLite und Python:** Wie kann man SQLite mit Python verwenden, welche Vorteile bietet die Verbindung mit Pandas für die Datenanalyse, was sind ORMs und wie nutzt man sie?
+* **SQLite und Python:** Wie könnte man SQLite mit Python verwenden, welche Vorteile bietet die Verbindung mit Pandas für die Datenanalyse, was sind ORMs und wie nutzt man sie?
 * **Live-Demo:** Hands-On in einem Jupyter Notebook.
 
 ---
