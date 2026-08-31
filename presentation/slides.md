@@ -176,7 +176,7 @@ df_result = pd.read_sql("SELECT * FROM books WHERE year > 2020", conn)
 
 ---
 
-## Vielen Dank für Ihre Aufmerksamkeit!
+## Vielen Dank für eure Aufmerksamkeit!
 ### Fragen & Diskussion
 
 <br>
