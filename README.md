@@ -4,7 +4,7 @@ author: "Klaus Prinz"
 domain: "learning"
 status: "active"
 createdDate: "2026-08-28"
-tags: [sqlite, database, jupyter notebook, demo, presentation, markdown, marp]
+tags: [sqlite, database, jupyter notebook, demo, presentation, markdown, marp, sqlite3, pandas, sqlalchemy]
 requester: "bibinfo"
 ticketId: ""
 ---
@@ -25,7 +25,7 @@ ticketId: ""
 ---
 
 ## Context & Objectives
-Demonstrate the lightweight, serverless power of SQLite for rapid prototyping and local data storage. Provide a hands-on Python/Pandas playground to explore relational queries. Introduce Object-Relational Mapping (ORM) concepts using SQLAlchemy at a beginner-friendly level.
+Demonstrate the benefits and usage of SQLite for rapid prototyping and local data storage. Provide a hands-on Python/Pandas playground to explore relational queries. Introduce Object-Relational Mapping (ORM) concepts using SQLAlchemy at a very basic level.
 
 ---
 
@@ -35,7 +35,7 @@ Demonstrate the lightweight, serverless power of SQLite for rapid prototyping an
 .
 ├── assets/                    # Screenshots, process diagrams, and images
 │   └── screenshots/
-├── data/                      # Local sample SQLite databases and CSVs
+├── data/                      # Local sample SQLite databases
 ├── notebooks/
 │   └── sqlite_demo.ipynb      # Main interactive tutorial notebook
 ├── presentation/              # Markdown presentation source and exports
