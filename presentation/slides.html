@@ -210,7 +210,7 @@ table {
 </blockquote>
 <ul>
 <li data-marpit-fragment="1"><strong>Keine externen Treiber</strong> oder pip-Installationen für den Einstieg nötig.</li>
-<li data-marpit-fragment="2"><strong>Typischer Ablauf:</strong> Verbindung herstellen (<code>connect</code>), Cursor erzeugen, SQL-Befehl ausführen, Änderungen bestätigen (<code>commit</code>), Verbindung schließen.</li>
+<li data-marpit-fragment="2"><strong>Typischer Ablauf:</strong> Verbindung herstellen (<code>.connect()</code>), Cursor erzeugen (<code>.cursor()</code>), SQL-Befehl ausführen (<code>.execute()</code>), Änderungen bestätigen (<code>.commit()</code>), Verbindung schließen(<code>.close()</code>).</li>
 </ul>
 <footer>Klaus Prinz | BIM25 - WIT</footer>
 </section>
@@ -231,17 +231,20 @@ table {
 <h3 id="code-beispiel-verbindung--abfrage">Code-Beispiel: Verbindung &amp; Abfrage</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> sqlite3
 
-<span class="hljs-comment"># Verbindung herstellen (erstellt die Datei, falls sie nicht existiert)</span>
+<span class="hljs-comment"># establish connection (file is created if it does not exist yet)</span>
 conn = sqlite3.connect(<span class="hljs-string">&quot;data/library.db&quot;</span>)
+
+<span class="hljs-comment"># obtain cursor handle</span>
 cursor = conn.cursor()
 
-<span class="hljs-comment"># SQL-Abfrage ausführen</span>
-cursor.execute(<span class="hljs-string">&quot;SELECT title, author FROM books WHERE year &gt; 2020;&quot;</span>)
+<span class="hljs-comment"># execute SQL query</span>
+cursor.execute(<span class="hljs-string">&quot;SELECT title, author, published_year FROM books WHERE published_year &gt; 2010;&quot;</span>)
 
-<span class="hljs-comment"># Ergebnisse abrufen und ausgeben</span>
+<span class="hljs-comment"># fetch and output results</span>
 <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> cursor.fetchall():
     <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Titel: <span class="hljs-subst">{row[<span class="hljs-number">0</span>]}</span>, Autor: <span class="hljs-subst">{row[<span class="hljs-number">1</span>]}</span>&quot;</span>)
 
+<span class="hljs-comment"># close connection</span>
 conn.close()
 </code></pre>
 <footer>Klaus Prinz | BIM25 - WIT</footer>
@@ -262,18 +265,18 @@ table {
 <h2 id="br%C3%BCcke-zur-datenanalyse">Brücke zur Datenanalyse</h2>
 <h3 id="sqlite--pandas--jupyter-playground">SQLite + Pandas = Jupyter Playground</h3>
 <blockquote>
-<p>Daten direkt aus einem Pandas DataFrame in die Datenbank schreiben und wieder einlesen – mit zwei Zeilen Code.</p>
+<p>Daten direkt aus der Datenbank in einen Pandas DataFrame lesen und wieder in die Datenbank schreiben – mit zwei Zeilen Code.</p>
 </blockquote>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 <span class="hljs-keyword">import</span> sqlite3
 
 conn = sqlite3.connect(<span class="hljs-string">&quot;data/library.db&quot;</span>)
 
-<span class="hljs-comment"># DataFrame in SQLite-Tabelle speichern</span>
-df.to_sql(<span class="hljs-string">&quot;books&quot;</span>, conn, if_exists=<span class="hljs-string">&quot;replace&quot;</span>, index=<span class="hljs-literal">False</span>)
+<span class="hljs-comment"># read SQL query directly into DataFrame</span>
+resultDF = pd.read_sql(<span class="hljs-string">&quot;SELECT * FROM books WHERE year &gt; 2020&quot;</span>, conn)
 
-<span class="hljs-comment"># SQL-Abfrage direkt als DataFrame einlesen</span>
-df_result = pd.read_sql(<span class="hljs-string">&quot;SELECT * FROM books WHERE year &gt; 2020&quot;</span>, conn)
+<span class="hljs-comment"># persist DataFrame in database as table</span>
+anotherDF.to_sql(<span class="hljs-string">&quot;books&quot;</span>, conn, if_exists=<span class="hljs-string">&quot;replace&quot;</span>, index=<span class="hljs-literal">False</span>)
 </code></pre>
 <ul>
 <li data-marpit-fragment="1"><strong>Ideal für Datenanalyse:</strong> Große Metadatensätze (z. B. MARC-Records oder Katalog-Exports als CSV) einlesen, lokal bereinigen, in SQLite persistieren und interaktiv in Jupyter Notebooks analysieren.</li>
@@ -332,9 +335,9 @@ table {
 <ul>
 <li data-marpit-fragment="1"><strong>Inhalt der Demo:</strong>
 <ol>
-<li>Tabellen-Setup &amp; Import von Beispieldaten</li>
-<li>SQL-Abfragen &amp; Joins (Patrons, Books, Loans)</li>
-<li>Kurzer Einblick: ORM mit SQLAlchemy</li>
+<li>Working with <code>sqlite3</code></li>
+<li><code>Pandas</code> Integration</li>
+<li>Object-Relational Mapping (ORM) with <code>SQLAlchemy</code></li>
 </ol>
 </li>
 </ul>
