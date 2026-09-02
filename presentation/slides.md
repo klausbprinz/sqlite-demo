@@ -91,7 +91,7 @@ style: |
 > Python bringt alles mit, was man braucht: Das Modul `sqlite3` ist standardmäßig in der Python-Standardbibliothek enthalten.
 
 * **Keine externen Treiber** oder pip-Installationen für den Einstieg nötig.
-* **Typischer Ablauf:** Verbindung herstellen (`connect`), Cursor erzeugen, SQL-Befehl ausführen, Änderungen bestätigen (`commit`), Verbindung schließen.
+* **Typischer Ablauf:** Verbindung herstellen (`.connect()`), Cursor erzeugen (`.cursor()`), SQL-Befehl ausführen (`.execute()`), Änderungen bestätigen (`.commit()`), Verbindung schließen(`.close()`).
 
 ---
 
@@ -101,17 +101,20 @@ style: |
 ```python
 import sqlite3
 
-# Verbindung herstellen (erstellt die Datei, falls sie nicht existiert)
+# establish connection (file is created if it does not exist yet)
 conn = sqlite3.connect("data/library.db")
+
+# obtain cursor handle
 cursor = conn.cursor()
 
-# SQL-Abfrage ausführen
+# execute SQL query
 cursor.execute("SELECT title, author FROM books WHERE year > 2020;")
 
-# Ergebnisse abrufen und ausgeben
+# fetch and output results
 for row in cursor.fetchall():
     print(f"Titel: {row[0]}, Autor: {row[1]}")
 
+# close connection
 conn.close()
 ```
 
@@ -120,7 +123,7 @@ conn.close()
 ## Brücke zur Datenanalyse
 ### SQLite + Pandas = Jupyter Playground
 
-> Daten direkt aus einem Pandas DataFrame in die Datenbank schreiben und wieder einlesen – mit zwei Zeilen Code.
+> Daten direkt aus der Datenbank in einen Pandas DataFrame lesen und wieder in die Datenbank schreiben – mit zwei Zeilen Code.
 
 ```python
 import pandas as pd
@@ -128,11 +131,11 @@ import sqlite3
 
 conn = sqlite3.connect("data/library.db")
 
-# DataFrame in SQLite-Tabelle speichern
-df.to_sql("books", conn, if_exists="replace", index=False)
+# read SQL query directly into DataFrame
+resultDF = pd.read_sql("SELECT * FROM books WHERE year > 2020", conn)
 
-# SQL-Abfrage direkt als DataFrame einlesen
-df_result = pd.read_sql("SELECT * FROM books WHERE year > 2020", conn)
+# persist DataFrame in database as table
+anotherDF.to_sql("books", conn, if_exists="replace", index=False)
 ```
 * **Ideal für Datenanalyse:** Große Metadatensätze (z. B. MARC-Records oder Katalog-Exports als CSV) einlesen, lokal bereinigen, in SQLite persistieren und interaktiv in Jupyter Notebooks analysieren.
 
@@ -158,9 +161,9 @@ df_result = pd.read_sql("SELECT * FROM books WHERE year > 2020", conn)
 > **Praxisumgebung:** Start in VS Code mit Extensions: `Python`, `Juypter`, `SQLite Viewer`.
 
 * **Inhalt der Demo:**
-  1. Tabellen-Setup & Import von Beispieldaten
-  2. SQL-Abfragen & Joins (Patrons, Books, Loans)
-  3. Kurzer Einblick: ORM mit SQLAlchemy
+  1. Working with `sqlite3`
+  2. `Pandas` Integration
+  3. Object-Relational Mapping (ORM) with `SQLAlchemy`
 
 ---
 ## Quellen & Weiterführende Links
