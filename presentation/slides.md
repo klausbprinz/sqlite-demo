@@ -108,7 +108,7 @@ conn = sqlite3.connect("data/library.db")
 cursor = conn.cursor()
 
 # execute SQL query
-cursor.execute("SELECT title, author FROM books WHERE year > 2020;")
+cursor.execute("SELECT title, author, published_year FROM books WHERE published_year > 2010;")
 
 # fetch and output results
 for row in cursor.fetchall():
