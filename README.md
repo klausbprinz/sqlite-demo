@@ -33,8 +33,8 @@ Demonstrate the benefits and usage of SQLite for rapid prototyping and local dat
 
 ```text
 .
-├── assets/                    # Screenshots, process diagrams, and images
-│   └── screenshots/
+├── assets/                    # SQLite logo png
+│   └── graphics/
 ├── data/                      # Local sample SQLite databases
 ├── notebooks/
 │   └── sqlite_demo.ipynb      # Main interactive tutorial notebook
@@ -47,7 +47,7 @@ Demonstrate the benefits and usage of SQLite for rapid prototyping and local dat
 
 ## Documentation & Visuals
 
-- Slides and presentation materials are stored under the presentation directory.
+- Slides and presentation materials are stored in `presentation`.
 
 ---
 
